@@ -1,5 +1,26 @@
+def binary(number):
+    binr = []
+    while number > 0:
+        binr.append(number % 2)
+        number = number // 2
+    binr.reverse()
+    return binr
+
+
 def encoding():
-    count = int(input("Enter the size of posting list"))
+    num = int(input("Enter the decimal to encode"))
+    binum = binary(num)
+    # offset
+    binum.pop(0)
+    offset_length = len(binum)
+    # print(offset_length)
+    unary = []
+    while offset_length > 0:
+        unary.append(1)
+        offset_length -= 1
+    unary.append(0)
+    gamma = unary + binum
+    return gamma
 
 
 def decoding():
@@ -18,7 +39,8 @@ def main():
 
     if action == '1':
         print(' Moving for Encoding')
-        encoding()
+        gamma = encoding()
+        print(gamma)
     elif action == '2':
         print('Moving for Decoding')
         decoding()

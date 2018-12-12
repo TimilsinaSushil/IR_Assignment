@@ -1,17 +1,29 @@
-from struct import pack,unpack
-def encoding():
-    count = int(input("Enter the size of posting list"))
-    bitstream = []
-    while count > 0:
-        number = int(input('Enter a number to encode: '))
-        bitstream.insert(0, number % 128)
-        print(bitstream)
-        if number < 128:
-            break
-        number = number // 128
-    bitstream[-1] += 128
+def binary(number):
+    binr = ''
+    while number > 0:
+        div = number % 2
+        number = number // 2
+        binr = binr + str(div)
+    return binr
 
-    count -= 1
+
+def encoding():
+    number = int(input("Enter a number to encode: "))
+    vb = ''
+    count = 0
+    while number > 0:
+        count += 1
+        print(count)
+        div = number % 2
+        number = number // 2
+        vb = vb + str(div)
+        if count == 7:
+            vb = vb + str(1)
+            count = 0
+    while count < 8:
+        count += 1
+        vb = vb + str(0)
+    return vb[::-1]
 
 
 def decoding():
@@ -32,11 +44,12 @@ def main():
 
     if action == '1':
         print(' Moving for Encoding')
-        encoding()
+        vb = encoding()
+        print(vb)
     elif action == '2':
         print('Moving for Decoding')
         decoding()
-        1
+
     elif action == '3':
         print('Terminating')
         exit()
