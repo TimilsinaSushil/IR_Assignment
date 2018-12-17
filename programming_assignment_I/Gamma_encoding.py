@@ -7,6 +7,8 @@ def binary(number):
     return binr
 
 
+
+
 def encoding():
     num = int(input("Enter the decimal to encode"))
     binum = binary(num)
@@ -20,6 +22,7 @@ def encoding():
         offset_length -= 1
     unary.append(0)
     gamma = unary + binum
+    gamma = ''.join(str(e) for e in gamma)
     return gamma
 
 
@@ -44,7 +47,7 @@ def main():
     elif action == '2':
         print('Moving for Decoding')
         decoding()
-        1
+
     elif action == '3':
         print('Terminating')
         exit()

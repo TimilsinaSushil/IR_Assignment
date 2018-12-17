@@ -1,9 +1,33 @@
+def binary(number):
+    binr = []
+    while number > 0:
+        binr.append(number % 2)
+        number = number // 2
+    binr.reverse()
+    return binr
+
+
+def gamma(binary_array):
+    binary_array.pop(0)
+    offset_length = len(binary_array)
+    unary = []
+    while offset_length > 0:
+        unary.append(1)
+        offset_length -= 1
+    unary.append(0)
+    gamma = unary + binary_array
+    return gamma
+
+
 def encoding():
-    count = int(input("Enter the size of posting list"))
-
-
-def decoding():
-    bytestring = int(input('Enter a bytestream to decode: '))
+    num = int(input("Enter the decimal to encode"))
+    binum = binary(num)
+    binum.pop(0)
+    offset_length = len(binum)
+    offset_length_binary = binary(offset_length)
+    print(offset_length_binary)
+    delta_encoded = gamma(offset_length_binary)
+    print(delta_encoded)
 
 
 def main():
@@ -21,8 +45,6 @@ def main():
         encoding()
     elif action == '2':
         print('Moving for Decoding')
-        decoding()
-        1
     elif action == '3':
         print('Terminating')
         exit()
